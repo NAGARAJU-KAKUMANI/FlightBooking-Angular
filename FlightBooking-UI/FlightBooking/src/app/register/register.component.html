@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="pricingTable">
+            <div class="pricingTable-header" style="    margin-top: 60px;">
+                <div class="price-value">
+                    <span class="amount">Register</span>
+
+                </div>
+            </div>
+            <form [formGroup]="registerUserData.formRegistorGroup">
+                <div class="op-body">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="registerUserData.email" formControlName="emailControl" email
+                            placeholder="User Name" class="form-control">
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('required','emailControl'))">
+                            User Name Required
+                        </div>
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('pattern','emailControl'))">
+                            User Name not in correct formate
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="registerUserData.password" formControlName="passwordregisterControl"
+                            class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('required','passwordControl'))">
+                            Password Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" [(ngModel)]="registerUserData.fullName" formControlName="userNameControl"
+                            class="form-control" placeholder="Full Name">
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('required','userNameControl'))">
+                            Full Name Required
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" [(ngModel)]="registerUserData.mobile" formControlName="mobileControl"
+                            class="form-control" placeholder="Mobile Number">
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('required','mobileControl'))">
+                            Mobile Number Required
+                        </div>
+                        <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
+                            [hidden]="!(hasError('pattern','mobileControl'))">
+                            Mobile Number Invalid
+                        </div>
+                    </div>
+                   
+                    <input type="Submit" class="btn btn-danger" [disabled]="!(registerUserData.formRegistorGroup.valid)" (click)="registerUser()" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

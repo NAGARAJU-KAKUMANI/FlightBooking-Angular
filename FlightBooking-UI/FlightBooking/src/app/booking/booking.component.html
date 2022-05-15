@@ -1,0 +1,161 @@
+<h3 class="heading-report">Schedule Flights</h3>
+<br>
+<h3 class="heading-report">Flight Details</h3>
+<!-- <form [formGroup]="InventoryModel.formInventoryGroup"> -->
+<div class="row align-items-center">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">Flight Number<span style="color:red">*</span></label>
+
+            <input type="text" placeholder="Flight Number" readonly [(ngModel)]="bookflightDataModel.flightNumber"
+                class="form-control">
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">Date Of Journey : <span style="color:red">*</span></label>
+            <input type="text" placeholder="Start Date" readonly [(ngModel)]="bookflightDataModel.dateOfJourney"
+                class="form-control">
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">From Place : <span style="color:red">*</span></label>
+            <input type="text" placeholder="From Place" readonly [(ngModel)]="bookflightDataModel.fromPlace"
+                class="form-control">
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">To Place : <span style="color:red">*</span></label>
+            <input type="text" placeholder="To Place" readonly [(ngModel)]="bookflightDataModel.toPlace" class="form-control">
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">Boarding Time : <span style="color:red">*</span></label>
+            <input type="text" placeholder="Start Date" readonly [(ngModel)]="bookflightDataModel.boardingTime"
+                class="form-control">
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="form-label">Email ID: <span style="color:red">*</span></label>
+            <input type="text" placeholder="End Date Place" readonly [(ngModel)]="bookflightDataModel.emailID"
+                class="form-control">
+        </div>
+    </div>
+
+</div>
+<br>
+<h3 class="heading-report">Passenger Details
+</h3>
+<form [formGroup]="bookflightDataModel.formbookingGroup">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Name Of Passenger<span style="color:red">*</span></label>
+
+                <input type="text" [(ngModel)]="bookflightDataModel.userName" formControlName="userNameControl"
+                    placeholder="Name Of Passenger" class="form-control">
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
+                    [hidden]="!(hasError('required','userNameControl'))">
+                    Name Of Passenger Required
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Pass Port Number : <span style="color:red">*</span></label>
+                <input type="text" placeholder="From Place" formControlName="passportNumberControl"
+                    [(ngModel)]="bookflightDataModel.passportNumber" class="form-control">
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
+                    [hidden]="!(hasError('required','passportNumberControl'))">
+                    Name Of Passenger Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Age: <span style="color:red">*</span></label>
+                <input type="text" placeholder="To Place" formControlName="agetControl"
+                    [(ngModel)]="bookflightDataModel.age" class="form-control">
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
+                    [hidden]="!(hasError('required','agetControl'))">
+                    Age Required
+                </div>
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
+                    [hidden]="!(hasError('pattern','agetControl'))">
+                    Age is Not correct formate
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Seat type <span style="color:red">*</span></label>
+                <select class="form-control" [(ngModel)]="bookflightDataModel.seattype"
+                    formControlName="seattypeControl" placeholder="select Meal Type">
+                    <option [value]="1">Business class</option>
+                    <option [value]="2">Normal class</option>
+                </select>
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup"
+                    [hidden]="!(hasError('required','seattypeControl'))">
+                    Seat type Required
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- <div class="row">
+    <div class="col-md-12" style="text-align: center;">
+
+        <input type="submit" value="Add Another Passenger" (click)="AddPassenger()" class="btn btn-danger">
+    </div>
+</div> -->
+<!-- <br>
+<div class="row">
+    <div class="col-md-12">
+        <table id="example" class="table table-bordered table-stripped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Pass Port Number</td>
+                    <td>Age</td>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cust of userDataModels">
+                    <td>{{cust.emailID}}</td>
+                    <td>{{cust.userName}}</td>
+                    <td>{{cust.passportNumber}}</td>
+                    <td>{{cust.age}}</td>              
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br> -->
+<div class="row">
+    <div class="col-md-12" style="text-align: center;">
+
+        <input type="submit" value="Book Ticket" [disabled]="!(bookflightDataModel.formbookingGroup.valid)" (click)="PostBookingDetails()" class="btn btn-success">
+    </div>
+</div>
+<div class="col-md-12" style="text-align: center;">
+
+    <span style="font-weight:bold; color:green">{{response}}</span>
+</div>
+
+<!-- <div>
+    {{boarding}}
+</div> -->

@@ -1,0 +1,222 @@
+<h3 class="heading-report">Schedule Flights</h3>
+<form [formGroup]="InventoryModel.formInventoryGroup">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Flight Number<span style="color:red">*</span></label>
+             
+                    <input type="text" placeholder="Flight Number" formControlName="flightNumberControl"
+                        [(ngModel)]="InventoryModel.flightNumber" class="form-control">
+                    <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                        [hidden]="!(hasError('required','flightNumberControl'))">
+                        Flight Number Required
+                    </div>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Airline Name <span style="color:red">*</span></label>
+                <select [(ngModel)]="InventoryModel.airLineId"
+                    formControlName="airLineIdControl" aria-placeholder="select Airline Name" class="form-control">
+                    <option [value]="0">Select Airline</option>
+                    <option [value]="1"> CarGO</option>
+                    <option [value]="2"> IndiGo</option>
+                </select>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','airLineIdControl'))">
+                    Airline Name Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">From Place : <span style="color:red">*</span></label>
+                <input type="text" placeholder="From Place" formControlName="fromPlaceControl"
+                    [(ngModel)]="InventoryModel.fromPlace" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','fromPlaceControl'))">
+                    From Place Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">To Place : <span style="color:red">*</span></label>
+                <input type="text" placeholder="To Place" formControlName="toPlaceControl"
+                    [(ngModel)]="InventoryModel.toPlace" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','toPlaceControl'))">
+                    To Place Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Start Date : <span style="color:red">*</span></label>
+                <input type="date" placeholder="Start Date" formControlName="startDateControl"
+                    [(ngModel)]="InventoryModel.startDate" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','startDateControl'))">
+                    Start Date Required
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">End Date Place : <span style="color:red">*</span></label>
+                <input type="date" placeholder="End Date Place" formControlName="endDateControl"
+                    [(ngModel)]="InventoryModel.endDate" class="form-control">
+
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','endDateControl'))">
+                    End Date Required
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Start Time : <span style="color:red">*</span></label>
+                <input type="text" placeholder="Start Time" formControlName="startTimeControl"
+                    [(ngModel)]="InventoryModel.startTime" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','startTimeControl'))">
+                    Start Time Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">End Time : <span style="color:red">*</span></label>
+                <input type="text" placeholder="End Time" formControlName="endTimeControl"
+                    [(ngModel)]="InventoryModel.endTime" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','endTimeControl'))">
+                    End Time Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Schedule Days <span style="color:red">*</span></label>
+                <select class="form-control" formControlName="scheduledDaysControl" (change)="changeSchedule($event)"
+                    [(ngModel)]="InventoryModel.scheduledDays" aria-placeholder="select Schedule Days">
+                    <option [value]="0">Select</option>  
+                    <option [value]="1">Sunday</option>
+                    <option [value]="2">Monday</option>
+                    <option [value]="3">Tuesday</option>
+                    <option [value]="4">Wednesday</option>
+                    <option [value]="5">Thursday</option>
+                    <option [value]="6">Friday</option>
+                    <option [value]="7">Saturday</option>
+                    <option [value]="8">Daily</option>
+                </select>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','scheduledDaysControl'))">
+                    Schedule Days Required
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Instrument : <span style="color:red">*</span></label>
+                <input type="text" placeholder="Instrument" formControlName="instrumentControl"
+                    [(ngModel)]="InventoryModel.instrument" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','instrumentControl'))">
+                    Instrument Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Business class Seat Count : <span style="color:red">*</span></label>
+                <input type="number" [(ngModel)]="InventoryModel.bClassCount" formControlName="bClassCountControl"
+                    placeholder="Business class Seat Count " class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','bClassCountControl'))">
+                    Business class Seat Count required
+                </div>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('pattern','bClassCountControl'))">
+                    Business class Seat value must be >0
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Normal class Seat Count : <span style="color:red">*</span></label>
+                <input type="number" placeholder="Normal class Seat Count" formControlName="nbClassCountControl"
+                    [(ngModel)]="InventoryModel.nbClassCount" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','nbClassCountControl'))">
+                    Normal class Seat Count required
+                </div>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('pattern','nbClassCountControl'))">
+                    Normal class Seat value must be >0
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Ticket Cost : <span style="color:red">*</span></label>
+                <input type="number" placeholder="Ticket Cost" formControlName="ticketCostControl"
+                    [(ngModel)]="InventoryModel.ticketCost" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','ticketCostControl'))">
+                    Ticket Cost required
+                </div>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('pattern','ticketCostControl'))">
+                    Ticket Cost correct formate value must be >0
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">No of Rows : <span style="color:red">*</span></label>
+                <input type="number" [(ngModel)]="InventoryModel.rows" formControlName="rowsControl"
+                    placeholder="No of Rows" class="form-control">
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('pattern','rowsControl'))">
+                    Rows Not correct formate value must be >0
+                </div>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','rowsControl'))">
+                    Rows required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Meal Type <span style="color:red">*</span></label>
+                <select [(ngModel)]="InventoryModel.meal" formControlName="mealControl" (change)="changemeal($event)"
+                    class="form-control" placeholder="select Meal Type" >
+                    <option [value]="0">select</option>
+                    <option [value]="1">None</option>
+                    <option [value]="2">Non-Veg</option>
+                    <option [value]="3">Veg</option>
+                </select>
+                <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
+                    [hidden]="!(hasError('required','mealControl'))">
+                    Meal Type Required
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12" style="text-align: center;">
+
+            <input type="submit" [disabled]="!(InventoryModel.formInventoryGroup.valid)" value="Submit"
+                (click)="PostInventoryDetails()" class="btn btn-danger">
+        </div>
+    </div>
+    <div class="col-md-12" style="text-align: center;">
+
+        <span style="font-weight:bold; color:green">{{Success}}</span>
+    </div>
+</form>
