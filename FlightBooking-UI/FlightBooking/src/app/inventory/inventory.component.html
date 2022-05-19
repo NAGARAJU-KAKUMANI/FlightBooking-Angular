@@ -20,8 +20,7 @@
                 <select [(ngModel)]="InventoryModel.airLineId"
                     formControlName="airLineIdControl" aria-placeholder="select Airline Name" class="form-control">
                     <option [value]="0">Select Airline</option>
-                    <option [value]="1"> CarGO</option>
-                    <option [value]="2"> IndiGo</option>
+                    <option *ngFor="let airline of AirlineDataModels" [ngValue]="airline.airlineId">{{airline.name}}</option>>
                 </select>
                 <div style="color:red;" *ngIf="InventoryModel.formInventoryGroup.dirty"
                     [hidden]="!(hasError('required','airLineIdControl'))">
@@ -211,12 +210,78 @@
 
         <div class="col-md-12" style="text-align: center;">
 
-            <input type="submit" [disabled]="!(InventoryModel.formInventoryGroup.valid)" value="Submit"
+            <input type="submit" *ngIf="submit==true" [disabled]="!(InventoryModel.formInventoryGroup.valid)" value="Submit"
                 (click)="PostInventoryDetails()" class="btn btn-danger">
+                <input type="submit" *ngIf="edited==true" (click)="EditPostInventoryDetails()" [disabled]="!(InventoryModel.formInventoryGroup.valid)" value="Update"
+                class="btn btn-danger" style="margin-right:10px;">
+                <input type="submit" *ngIf="cancel==true" (click)="CancelEdit()"  value="Cancel Edit"
+                class="btn btn-danger">
         </div>
     </div>
-    <div class="col-md-12" style="text-align: center;">
+    <!-- <div class="col-md-12" style="text-align: center;">
 
         <span style="font-weight:bold; color:green">{{Success}}</span>
-    </div>
+    </div> -->
 </form>
+<br>
+<div class="row">
+    <div class="col-md-12" style="overflow: scroll;">
+        <table id="example" class="table table-bordered table-stripped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <td>Flight Number</td>
+                   
+                    <td>AirLine Name</td>
+                    <td>From Place</td>
+                    <td>To Place</td>
+                    <td>Start_Date</td>
+                    <td>End_Date</td>
+                    <td>start Time</td>
+                    <td>End Time</td>
+                    <td>Scheduled Days</td>
+                    <td>Instrument</td>
+                   <td>Bussiness Class Count</td>
+                   <td>Bussiness class Avail Count</td>
+                   <td>NON Bussiness Class Count</td>
+                   <td>Non Bussiness class Available Count</td>
+                   <td>Ticket Cost</td>
+                   <td>Rows</td>
+                   <td>Meal</td>
+                   <td>action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cust of Inventorys">
+                    <td>{{cust.flightNumber}}</td>
+                    <td>{{cust.name}}</td>
+                    <td>{{cust.fromPlace}}</td>   
+                    
+                    <td>{{cust.toPlace}}</td>
+                    <td>{{cust.startDate}}</td>
+                    <td>{{cust.endDate}}</td>   
+
+                    <td>{{cust.startTime}}</td>
+                    <td>{{cust.endTime}}</td>
+                    <td>{{cust.scheduledDays}}</td>   
+
+                    <td>{{cust.instrument}}</td>
+                    <td>{{cust.bClassCount}}</td>
+                    <td>{{cust.bclassAvailCount}}</td>   
+
+                    <td>{{cust.nbClassCount}}</td>
+                    <td>{{cust.nBclassAvailableCount}}</td>
+                    <td>{{cust.ticketCost}}</td>  
+
+                    <td>{{cust.rows}}</td>
+                    <td>{{cust.meal}}</td> 
+                    <td>
+                        
+                        <input type="button" value="Edit" (click)="EditInventory(cust)" class="btn btn-success"  style="margin-right:10px; margin-bottom:10px;" />
+                        <input type="button" value="Cancel" class="btn btn-danger" (click)="DeleteInventory(cust)" />
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<h3 class="heading-report">AirLine  Details</h3>
+<form [formGroup]="airlinedataModel.formAirlineGroup">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Airline Name <span style="color:red">*</span></label>
+                <input type="text" placeholder="AirLine Name" [(ngModel)]="airlinedataModel.name"
+                    formControlName="airlineNameControl" class="form-control">
+                <div style="color:red;" *ngIf="airlinedataModel.formAirlineGroup.dirty"
+                    [hidden]="!(hasError('required','airlineNameControl'))">
+                    Airline Name Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Contact Number <span style="color:red">*</span></label>
+                <input type="text" placeholder="Contact Number " formControlName="contactNumberControl"
+                    [(ngModel)]="airlinedataModel.contactNumber" class="form-control">
+                <div style="color:red;" *ngIf="airlinedataModel.formAirlineGroup.dirty"
+                    [hidden]="!(hasError('required','contactNumberControl'))">
+                    Cotact Number Required
+                </div>
+                <div style="color:red;" *ngIf="airlinedataModel.formAirlineGroup.dirty"
+                    [hidden]="!(hasError('pattern','contactNumberControl'))">
+                    Contact Number is in Correct formate
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Address <span style="color:red">*</span></label>
+                <input type="text" aria-multiline="true" placeholder="To Place" formControlName="addressControl"
+                    [(ngModel)]="airlinedataModel.address" class="form-control">
+                <div style="color:red;" *ngIf="airlinedataModel.formAirlineGroup.dirty"
+                    [hidden]="!(hasError('required','addressControl'))">
+                    Addre Required
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: center;">
+
+            <input type="submit" *ngIf="submit==true" (click)="PostPlanAirlineDetails()"
+                [disabled]="!(airlinedataModel.formAirlineGroup.valid)" value="Submit" class="btn btn-danger">
+            <input type="submit" *ngIf="edited==true" (click)="PostupdatePlanAirlineDetails()"
+                [disabled]="!(airlinedataModel.formAirlineGroup.valid)" value="Update" class="btn btn-danger"
+                style="margin-right:10px;">
+            <input type="submit" *ngIf="cancel==true" (click)="CancelEdit()" value="Cancel Edit" class="btn btn-danger">
+        </div>
+    </div>
+</form>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table id="example" class="table table-bordered table-stripped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <td>AirLine Id</td>
+                    <td>AirLine Name</td>
+                    <td>Address</td>
+                    <td>Contact Number</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cust of AlirlineModels">
+                    <td>{{cust.airlineId}}</td>
+                    <td>{{cust.name}}</td>
+                    <td>{{cust.address}}</td>
+                    <td>{{cust.contactNumber}}</td>
+                   <td><input type="button" value="Edit" (click)="EditInventory(cust)" class="btn btn-success" style="margin-right:10px;" />
+                    <input type="button" value="Cancel" (click)="DeleteInventory(cust)" class="btn btn-danger" /></td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
