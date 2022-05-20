@@ -8,7 +8,6 @@ import {HomeComponent} from './home/home.component';
 import { BookingComponent } from './booking/booking.component';
 import { AuthGaurd } from './services/auth.gaurd';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
-import { AirlineComponent } from './airline/airline.component';
 const routes: Routes = [
   {
     path: '',
@@ -40,10 +39,7 @@ const routes: Routes = [
     path: 'ticket',
     component: TicketDetailsComponent
   },
-  {
-    path: 'airline',
-    component: AirlineComponent
-  },
+  
   {
     path: 'book',
     canActivate:[AuthGaurd],

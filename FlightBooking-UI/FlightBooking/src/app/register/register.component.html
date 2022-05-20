@@ -27,7 +27,7 @@
                         <input type="password" [(ngModel)]="registerUserData.password" formControlName="passwordregisterControl"
                             class="form-control" id="exampleInputPassword1" placeholder="Password">
                         <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
-                            [hidden]="!(hasError('required','passwordregisterControl'))">
+                            [hidden]="!(hasError('required','passwordControl'))">
                             Password Required
                         </div>
                     </div>

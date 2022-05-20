@@ -4,7 +4,7 @@ import { Router, Routes } from '@angular/router';
 import {NgbDateStruct,NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {  flightSearch,flightsData } from '../models/flightData';
 import { flightService } from '../services/flight.service';
-import Swal from 'sweetalert2';
+
 @Component({
    selector: 'app-search-flights',
   templateUrl: './search-flights.component.html',
@@ -16,9 +16,7 @@ export class SearchFlightsComponent implements OnInit {
   flightsmodel: flightsData=new flightsData();
   flightmodel:flightSearch=new flightSearch;
 
-  constructor( public _fligentevn:flightService, private _router: Router) { 
-    
-  }
+  constructor( public _fligentevn:flightService, private _router: Router) { }
 
   GetFromServer(){
   var flightdto={
@@ -34,8 +32,7 @@ export class SearchFlightsComponent implements OnInit {
     this.flights=res;
     if(res.length==0)
     {
-      Swal.fire("No flights Found in this Route!!")
-      // alert('No flights Found in this Route!!')
+      alert('No flights Found in this Route!!')
     }
    
   }
@@ -44,7 +41,6 @@ export class SearchFlightsComponent implements OnInit {
     console.log(res);
   }
   ngOnInit(): void {
-    
   }
   hasError(typeofvalidator:string,controlname:string):boolean{
     return this.flightmodel.formCustomerGroup.controls[controlname].hasError(typeofvalidator);

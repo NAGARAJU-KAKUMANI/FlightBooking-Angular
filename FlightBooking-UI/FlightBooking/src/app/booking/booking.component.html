@@ -1,4 +1,4 @@
-<h3 class="heading-report">Booking Flights</h3>
+<h3 class="heading-report">Schedule Flights</h3>
 <br>
 <h3 class="heading-report">Flight Details</h3>
 <!-- <form [formGroup]="InventoryModel.formInventoryGroup"> -->
@@ -6,8 +6,10 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="form-label">Flight Number<span style="color:red">*</span></label>
+
             <input type="text" placeholder="Flight Number" readonly [(ngModel)]="bookflightDataModel.flightNumber"
                 class="form-control">
+
         </div>
     </div>
     <div class="col-md-4">
@@ -50,21 +52,7 @@
                 class="form-control">
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="form-label">Seat type <span style="color:red">*</span></label>
-            <select class="form-control" [(ngModel)]="bookflightDataModel.seattype"
-                 placeholder="select Meal Type">
-                <option [value]="0">select</option>
-                <option [value]="1">Business class</option>
-                <option [value]="2">Normal class</option>
-            </select>
-            <!-- <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup"
-                [hidden]="!(hasError('required','seattypeControl'))">
-                Seat type Required
-            </div> -->
-        </div>
-    </div>
+
 </div>
 <br>
 <h3 class="heading-report">Passenger Details
@@ -75,7 +63,7 @@
             <div class="form-group">
                 <label class="form-label">Name Of Passenger<span style="color:red">*</span></label>
 
-                <input type="text" [(ngModel)]="usersDateaModel.userName" formControlName="userNameControl" 
+                <input type="text" [(ngModel)]="bookflightDataModel.userName" formControlName="userNameControl"
                     placeholder="Name Of Passenger" class="form-control">
                 <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
                     [hidden]="!(hasError('required','userNameControl'))">
@@ -87,11 +75,11 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="form-label">Pass Port Number : <span style="color:red">*</span></label>
-                <input type="text" placeholder="From Place" formControlName="passportNumberControl" 
-                    [(ngModel)]="usersDateaModel.passportNumber" class="form-control">
+                <input type="text" placeholder="From Place" formControlName="passportNumberControl"
+                    [(ngModel)]="bookflightDataModel.passportNumber" class="form-control">
                 <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
                     [hidden]="!(hasError('required','passportNumberControl'))">
-                    Pass Port Number Required
+                    Name Of Passenger Required
                 </div>
             </div>
         </div>
@@ -99,7 +87,7 @@
             <div class="form-group">
                 <label class="form-label">Age: <span style="color:red">*</span></label>
                 <input type="text" placeholder="To Place" formControlName="agetControl"
-                    [(ngModel)]="usersDateaModel.age" class="form-control">
+                    [(ngModel)]="bookflightDataModel.age" class="form-control">
                 <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup.dirty"
                     [hidden]="!(hasError('required','agetControl'))">
                     Age Required
@@ -110,30 +98,44 @@
                 </div>
             </div>
         </div>
-       
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="form-label">Seat type <span style="color:red">*</span></label>
+                <select class="form-control" [(ngModel)]="bookflightDataModel.seattype"
+                    formControlName="seattypeControl" placeholder="select Meal Type">
+                    <option [value]="1">Business class</option>
+                    <option [value]="2">Normal class</option>
+                </select>
+                <div style="color:red;" *ngIf="bookflightDataModel.formbookingGroup"
+                    [hidden]="!(hasError('required','seattypeControl'))">
+                    Seat type Required
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-12" style="text-align: center;">
 
-        <input type="submit" value="Add Another Passenger"  [disabled]="!(bookflightDataModel.formbookingGroup.valid)" (click)="AddPassenger()" class="btn btn-danger">
+        <input type="submit" value="Add Another Passenger" (click)="AddPassenger()" class="btn btn-danger">
     </div>
-</div>
-<br>
+</div> -->
+<!-- <br>
 <div class="row">
     <div class="col-md-12">
         <table id="example" class="table table-bordered table-stripped" style="width: 100%;">
             <thead>
                 <tr>
                     <td>Name</td>
-                   
+                    <td>Email</td>
                     <td>Pass Port Number</td>
                     <td>Age</td>
                    
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let cust of passengerArray">
+                <tr *ngFor="let cust of userDataModels">
+                    <td>{{cust.emailID}}</td>
                     <td>{{cust.userName}}</td>
                     <td>{{cust.passportNumber}}</td>
                     <td>{{cust.age}}</td>              
@@ -142,15 +144,18 @@
         </table>
     </div>
 </div>
-<br>
+<br> -->
 <div class="row">
     <div class="col-md-12" style="text-align: center;">
 
-        <input type="submit" value="Book Ticket" (click)="PostBookingDetails()" class="btn btn-success">
+        <input type="submit" value="Book Ticket" [disabled]="!(bookflightDataModel.formbookingGroup.valid)" (click)="PostBookingDetails()" class="btn btn-success">
     </div>
 </div>
-<!-- <div class="col-md-12" style="text-align: center;">
+<div class="col-md-12" style="text-align: center;">
 
     <span style="font-weight:bold; color:green">{{response}}</span>
-</div> -->
+</div>
 
+<!-- <div>
+    {{boarding}}
+</div> -->

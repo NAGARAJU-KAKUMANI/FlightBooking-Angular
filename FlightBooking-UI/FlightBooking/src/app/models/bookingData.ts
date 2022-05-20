@@ -11,8 +11,10 @@ export class BookflightsData{
   emailID:string='';
   createdBy: string='';
   seattype: number=0;
-
-// //   bookingusers:List<bookingUsers>=new List<bookingUsers>();
+  userName: string='';
+  passportNumber: string='';
+  age: number=0;
+//   bookingusers:List<bookingUsers>=new List<bookingUsers>();
   formbookingGroup:FormGroup;//Create
 
     /**
@@ -27,16 +29,8 @@ export class BookflightsData{
        //Control==>validation
        this.formbookingGroup.addControl("userNameControl",new FormControl('',Validators.required));
        this.formbookingGroup.addControl("passportNumberControl",new FormControl('',Validators.required));
-      //  this.formbookingGroup.addControl("seattypeControl",new FormControl('',Validators.required));
+       this.formbookingGroup.addControl("seattypeControl",new FormControl('',Validators.required));
        this.formbookingGroup.addControl("agetControl",new FormControl('',Validators.compose(validationcollection)));
     }
 }
-
-export class userData{
-  userName: string='';
-  passportNumber: string='';
-  age: number=0; 
-   
-}
-
 

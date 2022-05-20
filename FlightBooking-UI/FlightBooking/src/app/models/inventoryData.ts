@@ -54,29 +54,3 @@ export class InventoryData{
        this.formInventoryGroup.addControl("mealControl",new FormControl('',Validators.compose(validationcollection)));
     }
 }
-
-export class ALLInventoryData{
-   flightNumber:string='';
-   name: string='';
-   fromPlace: string='';
-   toPlace: string='';
-   startDate:Date= new Date();
-   endDate: Date= new Date();
-   startTime: string='';
-   endTime: string='';
-   scheduledDays: number=0;
-   instrument: string='';
-   bClassCount:number=0;
-   bclassAvailCount: number=0;
-   nbClassCount: number=0;
-   nBclassAvailableCount: number=0;
-   ticketCost: number=0;
-   rows: number=0;
-   meal: string='';
-}
-export class AirlineData{
-   airlineId: number=0;
-   name: string='';
-   address: string='';
-   contactNumber:string='';
- }

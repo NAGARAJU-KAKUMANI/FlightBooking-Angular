@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserData } from '../models/UserData';
 import { AuthService } from '../services/login.service';
 
@@ -7,23 +7,9 @@ import { AuthService } from '../services/login.service';
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent {
   loginUserData: UserData = new UserData();
-   returnUrl: string='';
-  constructor(private _auth: AuthService, private _router: Router,private route: ActivatedRoute) {
-    //   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    //  console.log(this.returnUrl);
-   }
-
-  ngOnInit(): void {
-     // reset login status
-    //  this._auth.logoutUser();
-
-     // get return url from route parameters or default to '/'
-     
-     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-     console.log(this.returnUrl);
-  }
+  constructor(private _auth: AuthService, private _router: Router) { }
   satus:string='';
   loginUser() {
     var userdetails={
@@ -39,16 +25,7 @@ export class LoginComponent  implements OnInit {
       localStorage.setItem('email', res.email)
       localStorage.setItem('role', res.role)
       localStorage.setItem('userID', res.userID)
-      if(this.returnUrl=='')
-      {
       this._router.navigate(['/home'])
-      }
-      else
-      {
-        this._router.navigateByUrl(this.returnUrl)
-      }
-     
-     
     },
       err => {
         this.satus="Invalid User details"

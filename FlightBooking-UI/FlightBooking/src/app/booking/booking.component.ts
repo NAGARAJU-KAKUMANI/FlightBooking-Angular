@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import Swal from 'sweetalert2';
-import { BookflightsData, userData } from '../models/bookingData';
+import { BookflightsData } from '../models/bookingData';
 import { BookingService } from '../services/booking.service';
 @Component({
   selector: 'app-booking',
@@ -10,19 +9,15 @@ import { BookingService } from '../services/booking.service';
 
 })
 export class BookingComponent implements OnInit {
-  status:boolean=false;
-   usersDateaModel:userData =new userData();
-  // userDataModels:Array<userData>=new Array<userData>();
-  userBookingDetailsArray: any=[];
-  passengerArray: Array<userData> = [];
+ 
+  // usersDateaModel:bookingUsers =new bookingUsers();
+  // userDataModels:Array<bookingUsers>=new Array<bookingUsers>();
   response:string='';
   boarding:string='';
   
   bookflightDataModel: BookflightsData =new BookflightsData() ;
 
   constructor(public _BookingEvent: BookingService,private route: ActivatedRoute,private _router: Router) {
-    debugger;
-  
      this.route.queryParamMap.subscribe(data => {
       this.bookflightDataModel.flightNumber=data.get('flightNumber')|| '{}';
       this.bookflightDataModel.fromPlace=data.get('FromPlace')|| '{}';
@@ -35,17 +30,12 @@ export class BookingComponent implements OnInit {
      this.bookflightDataModel.emailID=localStorage.getItem('email') || '{}';
    }
   PostBookingDetails() {
-    if(this.passengerArray.length==0)
-    {
-      return alert('Please Enter Passenger details')
-    }
     if(this.bookflightDataModel.flightNumber=='')
     {
       return this._router.navigate(['/Searchflights'])
     }
     if(Number(this.bookflightDataModel.seattype)==0)
     {
-      
       return alert('Select Seat Type')
     }
     debugger;
@@ -58,21 +48,18 @@ export class BookingComponent implements OnInit {
       emailID: this.bookflightDataModel.emailID,
       createdBy: localStorage.getItem('userID'),
       seattype: Number(this.bookflightDataModel.seattype),
-      bookingUsers:this.passengerArray
+      userName: this.bookflightDataModel.userName,
+      passportNumber: this.bookflightDataModel.passportNumber,
+      age: Number(this.bookflightDataModel.age)
     }
-    console.log(flightDetails);
-    this.userBookingDetailsArray.push(flightDetails);
-    console.log(this.userBookingDetailsArray);
-    this._BookingEvent.PostBookingDetails(this.userBookingDetailsArray).subscribe(res => this.SuccessGet(res), res => this.ErrorGet(res))
+    this._BookingEvent.PostBookingDetails(flightDetails).subscribe(res => this.SuccessGet(res), res => this.ErrorGet(res))
 
   }
   SuccessGet(res: any) {
     console.log(res);
-    if(res.pnr !=null || res.pnr!='')
+    if(res.ticketID !=null || res.ticketID!='')
     {
-    this.response="Ticket Booked Successfully Save PNR:"+res.pnr+"  For future use ";
-    Swal.fire(this.response);
-    this._router.navigate(['/ticket'], { queryParams: { pnr:res.pnr} }); 
+    this.response="Ticket Booked Successfully Save Ticket ID:"+res.ticketID+"  For future use ";
     }
     this.bookflightDataModel = new BookflightsData();
     debugger;
@@ -80,7 +67,6 @@ export class BookingComponent implements OnInit {
   }
   ErrorGet(res: any) {
     debugger;
-    Swal.fire('Something went Wrong try After Some time');
     console.log(res);
     
   }
@@ -89,31 +75,20 @@ export class BookingComponent implements OnInit {
     
   }
   
-  AddPassenger() {
-    debugger;
-    var userDetails={
-      userName:this.usersDateaModel.userName,
-      passportNumber:this.usersDateaModel.passportNumber,
-      age:Number(this.usersDateaModel.age)
-    }
+  // AddPassenger() {
+  //   debugger;
+  //   this.userDataModels.push(this.usersDateaModel);
+  //   this.usersDateaModel = new bookingUsers();
+  //   // this.GetFromServer();
+  //   // //console.log(this.CustomerModels);
+  // }
+  // EditCustomer(input: bookingUsers) {
 
-    this.passengerArray.push(userDetails);
-    if(this.passengerArray.length>0)
-    {
-      this.status=true;
-    }
-    this.usersDateaModel = new userData();
-  }
-  EditCustomer(input: userData) {
-
-    this.usersDateaModel = input;
-  }
+  //   this.usersDateaModel = input;
+  // }
 
   hasError(typeofvalidator: string, controlname: string): boolean {
     return this.bookflightDataModel.formbookingGroup.controls[controlname].hasError(typeofvalidator);
   }
 
-
 }
-
-

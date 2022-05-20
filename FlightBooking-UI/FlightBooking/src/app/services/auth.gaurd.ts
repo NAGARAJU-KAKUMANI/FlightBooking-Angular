@@ -11,14 +11,9 @@ export class AuthGaurd implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
             if(this._authService.loggedIn()){
-                debugger;
                 return true;
             }else{
-                debugger;
-                // console.log({ queryParams: { returnUrl: state.url }});
-                this._router.navigate(['login'], { queryParams: { returnUrl: state.url }});
-                //this._router.navigate(['login'])
-
+                this._router.navigate(['login'])
                 return false
             }
     }
