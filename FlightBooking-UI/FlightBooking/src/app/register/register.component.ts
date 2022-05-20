@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistorUserData, UserData } from '../models/UserData';
 import { AuthService } from '../services/login.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +29,7 @@ export class RegisterComponent  {
       this._router.navigate(['/home'])
     },
       err => {
+        Swal.fire('Fail to register');
         this.status="Fail to register"
       })
   }

@@ -29,6 +29,7 @@ export class AirlineComponent implements OnInit {
 
   }
   ErrorGetAll(res: any) {
+    Swal.fire('Something Went Wrong Please try After Some time');
     console.log(res);
   }
 
@@ -58,6 +59,7 @@ export class AirlineComponent implements OnInit {
   }
   ErrorGet(res: any) {
     debugger;
+    Swal.fire('Something Went Wrong Please try After Some time');
     console.log(res);
   }
 
@@ -83,6 +85,7 @@ export class AirlineComponent implements OnInit {
   }
   ErrorCancelGet(res: any) {
     debugger;
+    Swal.fire('Something Went Wrong Please try After Some time');
     console.log(res);
   }
   CancelEdit() {
@@ -107,6 +110,7 @@ export class AirlineComponent implements OnInit {
   }
   ErrorEditGet(res: any) {
     debugger;
+    Swal.fire('Something Went Wrong Please try After Some time');
     console.log(res);
   }
   PostupdatePlanAirlineDetails() {
@@ -139,6 +143,7 @@ export class AirlineComponent implements OnInit {
   }
   ErrorUpdateGet(res: any) {
     debugger;
+    Swal.fire('Something Went Wrong Please try After Some time');
     console.log(res);
   }
   hasError(typeofvalidator: string, controlname: string): boolean {

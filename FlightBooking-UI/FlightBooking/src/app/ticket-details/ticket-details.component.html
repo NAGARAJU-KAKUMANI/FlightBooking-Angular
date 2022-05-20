@@ -3,16 +3,18 @@
     <div class="row align-items-center">
         <div class="col-md-4">
             <div class="form-group">
-                <label class="form-label">Ticket ID : <span style="color:red">*</span></label>
-                <input type="text" placeholder="Ticket ID" [(ngModel)]="ticketmodel.ticketID" formControlName="userNameControl" class="form-control">
+                <label class="form-label">Ticket ID /BookingId: <span style="color:red">*</span></label>
+                <input type="text" placeholder="Ticket ID/BookingId" [(ngModel)]="ticketmodel.ticketID"
+                    formControlName="userNameControl" class="form-control">
             </div>
             <div style="color:red;" *ngIf="ticketmodel.formbookingGroup.dirty"
-            [hidden]="!(hasError('required','userNameControl'))">
-            Ticket ID Requried
-        </div>
+                [hidden]="!(hasError('required','userNameControl'))">
+                Ticket ID Requried
+            </div>
         </div>
         <div class="col-md-12" style="text-align: center;">
-            <input type="submit" value="Check Ticket" [disabled]="!(ticketmodel.formbookingGroup.valid)" (click)="GetTicketDetails()" class="btn btn-danger">
+            <input type="submit" value="Check Ticket" [disabled]="!(ticketmodel.formbookingGroup.valid)"
+                (click)="GetTicketDetails()" class="btn btn-danger">
         </div>
     </div>
 </form>
@@ -42,8 +44,9 @@
                         <div class="col-md-3" style="background: linear-gradient(to right, #e4e7f9, #ffdede); ">Boarding
                             Time</div>
                         <div class="col-md-3" style="font-weight:bold">{{ticket.boardingTime}}</div>
-                        <div class="col-md-3" style="background: linear-gradient(to right, #e4e7f9, #ffdede); ">Ticket Status
-                            </div>
+                        <div class="col-md-3" style="background: linear-gradient(to right, #e4e7f9, #ffdede); ">Ticket
+                            Status
+                        </div>
                         <div class="col-md-3" style="font-weight:bold"> {{ticket.statusstr}}</div>
                         <div class="col-md-3" style="background: linear-gradient(to right, #e4e7f9, #ffdede); ">From
                             Place</div>
@@ -73,15 +76,11 @@
                         <div class="col-md-3" style="font-weight:bold"> {{ticket.emailID}}</div>
                     </div>
                 </div>
-                <div class="card-footer" style="background: linear-gradient(to right, #6270be, #da4f4f);">
-                    <input type="button" value="Cancel Ticket" class="btn btn-danger" (click)="cancelTicket(ticket)" />
+                <div class="card-footer"  style="background: linear-gradient(to right, #6270be, #da4f4f);">
+                    <input type="button" *ngIf = "ticket.status == 0" value="Cancel Ticket" class="btn btn-danger" (click)="cancelTicket(ticket)" />
                 </div>
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
-</div>
-<div class="col-md-12" style="text-align: center;">
-
-  
 </div>

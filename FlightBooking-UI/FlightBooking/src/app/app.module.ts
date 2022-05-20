@@ -20,6 +20,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthGaurd } from './services/auth.gaurd';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { ticketService } from './services/ticket.serve';
+import { AirlineComponent } from './airline/airline.component';
+import { AirlineService } from './services/airline.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ticketService } from './services/ticket.serve';
     BookingComponent,
     LoginComponent,
     RegisterComponent,
-    TicketDetailsComponent
+    TicketDetailsComponent,
+    AirlineComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { ticketService } from './services/ticket.serve';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [flightService,InventoryService,BookingService,ticketService,AuthService,AuthGaurd,{
+  providers: [flightService,InventoryService,BookingService,ticketService,AirlineService,AuthService,AuthGaurd,{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true

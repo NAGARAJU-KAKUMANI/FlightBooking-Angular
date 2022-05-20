@@ -16,10 +16,13 @@
         <a class="nav-link" *ngIf="Logged(true,'1')" routerLink="/inventory">Schedule Flight</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" *ngIf="Logged(true,'1')" routerLink="/airline">Airline Details</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" *ngIf="Logged(true,'0')" routerLink="/Searchflights">Book Tickets</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  routerLink="/ticket">Check Ticket Details</a>
+        <a class="nav-link" *ngIf="Logged(false,'1')" routerLink="/ticket">Check Ticket Details</a>
       </li>
     </ul>
     

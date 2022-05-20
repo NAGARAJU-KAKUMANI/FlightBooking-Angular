@@ -19,7 +19,7 @@
                         </div>
                         <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
                             [hidden]="!(hasError('pattern','emailControl'))">
-                            User Name not in correct formate
+                            User Name not in correct formate ex:sample@gmail.com
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@
                         <input type="password" [(ngModel)]="registerUserData.password" formControlName="passwordregisterControl"
                             class="form-control" id="exampleInputPassword1" placeholder="Password">
                         <div style="color:red;" *ngIf="registerUserData.formRegistorGroup.dirty"
-                            [hidden]="!(hasError('required','passwordControl'))">
+                            [hidden]="!(hasError('required','passwordregisterControl'))">
                             Password Required
                         </div>
                     </div>

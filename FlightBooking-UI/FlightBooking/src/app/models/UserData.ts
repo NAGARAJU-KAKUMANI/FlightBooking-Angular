@@ -47,7 +47,7 @@ export class RegistorUserData{
        mobilevalidationcollection.push(Validators.pattern("[789][0-9]{9}"));
        
        //Control==>validation
-       this.formRegistorGroup.addControl("passwordControl",new FormControl('',Validators.required));
+       this.formRegistorGroup.addControl("passwordregisterControl",new FormControl('',Validators.required));
        this.formRegistorGroup.addControl("userNameControl",new FormControl('',Validators.required));
        this.formRegistorGroup.addControl("mobileControl",new FormControl('',Validators.compose(mobilevalidationcollection)));
        this.formRegistorGroup.addControl("emailControl",new FormControl('',Validators.compose(validationcollection)));

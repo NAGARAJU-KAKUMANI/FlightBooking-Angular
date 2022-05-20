@@ -55,7 +55,7 @@
         <table id="example" class="table table-bordered table-stripped" style="width: 100%;">
             <thead>
                 <tr>
-                    <td>AirLine Id</td>
+                    <!-- <td aria-disabled="true">AirLine Id</td> -->
                     <td>AirLine Name</td>
                     <td>Address</td>
                     <td>Contact Number</td>
@@ -64,7 +64,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let cust of AlirlineModels">
-                    <td>{{cust.airlineId}}</td>
+                    <!-- <td aria-disabled="true">{{cust.airlineId}}</td> -->
                     <td>{{cust.name}}</td>
                     <td>{{cust.address}}</td>
                     <td>{{cust.contactNumber}}</td>
